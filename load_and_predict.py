@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.ensemble.forest import RandomForestClassifier
+from sklearn.ensemble.forest import ExtraTreesClassifier
 
 train_file = '/home/jvujjini/Kaggle/ForestCoverTypePrediction/train.csv'
 test_file = '/home/jvujjini/Kaggle/ForestCoverTypePrediction/test.csv'
@@ -13,9 +13,10 @@ train_X = train_data[:,:-1]
 train_y = train_data[:,-1]
 test_X = test_data
 
-clf = RandomForestClassifier(n_estimators=100)
+clf = ExtraTreesClassifier(n_estimators=2500)
 print "Started Training..."
 clf.fit(train_X, train_y)
+print "Done Training"
 print "Started Predicting..."
 predict_label = clf.predict(test_X)
 
