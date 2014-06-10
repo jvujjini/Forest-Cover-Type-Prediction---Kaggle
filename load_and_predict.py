@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn import tree
 
 train_file = '/home/jvujjini/Kaggle/ForestCoverTypePrediction/train.csv'
 test_file = '/home/jvujjini/Kaggle/ForestCoverTypePrediction/test.csv'
@@ -13,11 +13,11 @@ train_X = train_data[:,:-1]
 train_y = train_data[:,-1]
 test_X = test_data
 
-knn = KNeighborsClassifier()
+clf = tree.DecisionTreeClassifier()
 print "Started Training..."
-knn.fit(train_X, train_y)
+clf.fit(train_X, train_y)
 print "Started Predicting..."
-predict_label = knn.predict(test_X)
+predict_label = clf.predict(test_X)
 
 output_file = '/home/jvujjini/Kaggle/ForestCoverTypePrediction/output.csv'
 
