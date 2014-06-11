@@ -1,5 +1,6 @@
 import numpy as np
-from sklearn.ensemble.forest import ExtraTreesClassifier
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.svm.classes import LinearSVC
 
 train_file = '/home/jvujjini/Kaggle/ForestCoverTypePrediction/train.csv'
 test_file = '/home/jvujjini/Kaggle/ForestCoverTypePrediction/test.csv'
@@ -13,12 +14,14 @@ train_X = train_data[:,:-1]
 train_y = train_data[:,-1]
 test_X = test_data
 
-clf = ExtraTreesClassifier(n_estimators=2500)
-print "Started Training..."
+print "starting..."
+
+predict_label = OneVsRestClassifier(LinearSVC(random_state=0)).fit(train_X, train_y).predict(test_X)
+'''print "Started Training..."
 clf.fit(train_X, train_y)
 print "Done Training"
 print "Started Predicting..."
-predict_label = clf.predict(test_X)
+predict_label = clf.predict(test_X)'''
 
 output_file = '/home/jvujjini/Kaggle/ForestCoverTypePrediction/output.csv'
 
